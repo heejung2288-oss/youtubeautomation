@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50대 건강 상식 1분 쇼츠 대본</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; background-color: #f3f4f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .scene { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; background: #fafafa; }
+        .scene h2 { margin-top: 0; color: #3498db; }
+        .script { font-size: 1.1em; line-height: 1.6; margin-bottom: 15px; }
+        .prompt { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; font-family: monospace; }
+        .prompt strong { color: #f1c40f; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>50대 건강 상식 1분 쇼츠 대본</h1>
+        <div id="content">Loading...</div>
+    </div>
+
+    <script>
+        const data = [
+            {
+                "scene": 1,
+                "script": "50대부터 급격히 나빠지는 혈관 건강, '이것'만 알면 막을 수 있습니다! 유튜브에서 가장 많이 찾아보는 50대 건강 필수 상식 3가지, 지금 바로 알려드릴게요.",
+                "image_prompt": "A close-up cinematic shot of a healthy and energetic 50-year-old Korean person smiling confidently, vibrant lighting, modern and clean style"
+            },
+            {
+                "scene": 2,
+                "script": "첫 번째, 아침 공복 미지근한 물 한 잔! 밤새 끈적해진 혈액을 맑게 하고 심근경색을 예방하는 가장 쉽고 확실한 방법입니다. 차가운 물은 피해주세요!",
+                "image_prompt": "A warm morning sunlight shining through a window onto a transparent glass of warm water on a beautiful wooden table, cozy and uplifting atmosphere"
+            },
+            {
+                "scene": 3,
+                "script": "두 번째, 매일 10분 계단 오르기! 50대부터는 근육이 곧 생명입니다. 하체 근육을 키워 기초대사량을 높이고 무릎 관절을 보호하세요.",
+                "image_prompt": "A dynamic angle of a middle-aged person wearing stylish athletic shoes walking up a clean, well-lit modern staircase, focus on the legs, energetic vibe"
+            },
+            {
+                "scene": 4,
+                "script": "세 번째, 하얀 탄수화물 줄이기! 빵, 국수 같은 밀가루와 설탕은 줄이고, 계란이나 두부 같은 질 좋은 단백질 식단으로 건강한 젊음을 유지하세요.",
+                "image_prompt": "A beautifully plated healthy meal featuring a boiled egg, fresh tofu, and colorful vegetables on a modern ceramic plate, soft natural lighting"
+            },
+            {
+                "scene": 5,
+                "script": "건강은 잃기 전에 지키는 것이 정답입니다. 오늘 알려드린 3가지, 당장 내일 아침부터 실천해보세요! 구독과 좋아요 누르시고 매일 건강 꿀팁 받아가세요.",
+                "image_prompt": "A modern 3D glowing subscribe button and thumbs up icon floating over a soft blurred background, bright and cheerful Youtube shorts aesthetic"
+            }
+        ];
+
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = '';
+        data.forEach(item => {
+            const sceneDiv = document.createElement('div');
+            sceneDiv.className = 'scene';
+            sceneDiv.innerHTML = `
+                <h2>Scene ${item.scene}</h2>
+                <div class="script"><strong>대본:</strong> <br>${item.script}</div>
+                <div class="prompt"><strong>Image Prompt:</strong> <br>${item.image_prompt}</div>
+                <div style="margin-top: 15px;">
+                    <strong>생성된 이미지:</strong><br>
+                    <img src="./asset/images/scene_${item.scene}.png" alt="Scene ${item.scene} image" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 10px;">
+                </div>
+            `;
+            contentDiv.appendChild(sceneDiv);
+        });
+    </script>
+</body>
+</html>

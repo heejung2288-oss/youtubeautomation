@@ -1,0 +1,13 @@
+node_modules/
+*.mp4
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.json
+!package.json
+!plan.json
+.env
+secret*.json
+client_secret*.json
+tokens.json

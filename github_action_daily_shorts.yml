@@ -1,0 +1,47 @@
+name: Daily Health Shorts Automation
+
+on:
+  schedule:
+    - cron: '0 1 * * *' # 매일 UTC 01:00 (한국 시간 오전 10:00)
+  workflow_dispatch: # 수동 실행 버튼 활성화
+
+jobs:
+  run-automation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update && sudo apt-get install -y ffmpeg
+        python -m pip install --upgrade pip
+        pip install requests google-generativeai google-api-python-client google-auth-oauthlib
+
+    - name: Run Master Script ( 기획, 자산 생성, 합성 )
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+      run: python auto_shorts_master_v2.py
+
+    - name: Upload to YouTube
+      env:
+        YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+        YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      run: python youtube_auto_upload.py
+
+    - name: Save Artifacts (실패 대비 저장)
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: final-video-and-plans
+        path: |
+          final_shorts.mp4
+          plan.json
