@@ -2,7 +2,7 @@ name: Daily Health Shorts Automation
 
 on:
   schedule:
-    - cron: '0 1 * * *' # 매일 UTC 01:00 (한국 시간 오전 10:00)
+    - cron: '0 3 * * *' # 매일 UTC 03:00 (한국 시간 오후 12:00)
   workflow_dispatch: # 수동 실행 버튼 활성화
 
 jobs:
